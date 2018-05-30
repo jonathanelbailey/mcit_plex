@@ -1,0 +1,10 @@
+- hosts: plex
+  remote_user: centos
+  tasks:
+    - include_role:
+        name: os_updates
+    - include_role:
+        name: nfs
+    - include_role:
+        name: cockpit
+        tasks_from: cockpit

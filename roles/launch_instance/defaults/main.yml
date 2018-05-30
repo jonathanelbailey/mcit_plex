@@ -1,0 +1,3 @@
+os_image: Centos-7
+os_network: live-net
+ansible_key: jbailey.pub

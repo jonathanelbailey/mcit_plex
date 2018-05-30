@@ -1,0 +1,8 @@
+cockpit_packages:
+  - cockpit
+  - cockpit-dashboard
+  - cockpit-system
+  - cockpit-selinux
+  - cockpit-ws
+  - cockpit-storaged
+  - cockpit-packagekit

@@ -1,0 +1,3 @@
+- include: cockpit-docker.yml tags=docker
+- include: cockpit-kubernetes.yml tags=kubernetes
+- include: cockpit.yml tags=cockpit

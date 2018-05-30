@@ -1,0 +1,7 @@
+plex_folder: /plex
+transcode: "{{plex_folder}}/transcode"
+movies: "{{plex_folder}}/media"
+config: "{{plex_folder}}/config"
+
+nfs_server: 10.0.0.49
+nfs_media: "{{nfs_server}}:/data-volume/media"

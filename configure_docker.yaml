@@ -1,0 +1,8 @@
+- hosts: plex
+  remote_user: centos
+  tasks:
+    - include_role:
+        name: docker
+    - include_role:
+        name: cockpit
+        tasks_from: cockpit-docker

@@ -1,0 +1,23 @@
+- name: install deps
+  yum:
+    name: "{{nfs_packages}}"
+    state: present
+  become: yes
+
+- name: create folders
+  file:
+    name: "{{item}}"
+    state: directory
+  with_items:
+    - "{{plex_folder}}"
+    - "{{config}}"
+    - "{{transcode}}"
+    - "{{media}}"
+  become: yes
+
+- name: Mount media
+  mount:
+    path: "{{media}}"
+    src: "{{nfs_media}}"
+    fstype: nfs
+    state: mounted

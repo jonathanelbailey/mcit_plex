@@ -1,0 +1,71 @@
+- name: Gather facts about a previously created image
+  os_image_facts:
+    auth:
+      auth_url: "{{ansible_env.OS_AUTH_URL}}"
+      username: "{{ansible_env.OS_USERNAME}}"
+      password: "{{ansible_env.OS_PASSWORD}}"
+      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
+    image: "{{os_image}}"
+  register: os_image_info
+
+
+- name: Gather facts about a previously created network by name
+  os_networks_facts:
+    auth:
+      auth_url: "{{ansible_env.OS_AUTH_URL}}"
+      username: "{{ansible_env.OS_USERNAME}}"
+      password: "{{ansible_env.OS_PASSWORD}}"
+      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
+    name: "{{os_network}}"
+  register: os_net_info
+
+- name: create os keypair
+  os_keypair:
+    cloud: "{{ansible_env.OS_PROJECT_NAME}}"
+    state: present
+    name: "{{ansible_key}}"
+    auth:
+      auth_url: "{{ansible_env.OS_AUTH_URL}}"
+      username: "{{ansible_env.OS_USERNAME}}"
+      password: "{{ansible_env.OS_PASSWORD}}"
+      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
+    public_key_file: "{{os_pubkey}}"
+
+- name: launch instance
+  os_server:
+    state: present
+    auth:
+      auth_url: "{{ansible_env.OS_AUTH_URL}}"
+      username: "{{ansible_env.OS_USERNAME}}"
+      password: "{{ansible_env.OS_PASSWORD}}"
+      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
+    name: plex-live
+    image: "{{os_image_info.id}}"
+    key_name: "{{ansible_key}}"
+    nics:
+      net-id: "{{os_net_info.id}}"
+    timeout: 200
+    flavor: 6
+    meta:
+      hostname: plex.magiccityit.com
+      group: plex
+    wait: yes
+    auto_floating_ip: yes
+    register: plex
+
+- name: wait for server to deploy
+  wait_for:
+    host: "{{plex.server.public_v4}}"
+    port: 22
+    search_regex: OpenSSH
+    state: started
+    timeout: 300
+    delay: 60
+  delegate_to: localhost
+  when: reboot.changed
+
+- name: Add CentOS Instance to Inventory
+  add_host: 
+    name: plex.magiccityit.com
+    groups: plex
+    ansible_ssh_host: "{{ plex.server.public_v4 }}"

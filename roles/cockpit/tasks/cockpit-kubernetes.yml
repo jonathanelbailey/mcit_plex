@@ -1,0 +1,14 @@
+- name: install package
+  yum:
+    name: cockpit-kubernetes
+    state: present
+  become: yes
+  register: cockpit_kubernetes
+
+- name: restart service
+  service:
+    name: cockpit.socket
+    state: restarted
+    enabled: yes
+  become: yes
+  when: cockpit_kubernetes.changed

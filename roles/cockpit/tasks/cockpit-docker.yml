@@ -1,0 +1,14 @@
+- name: install package
+  yum:
+    name: cockpit-docker
+    state: present
+  become: yes
+  register: cockpit_docker
+
+- name: restart service
+  service:
+    name: cockpit.socket
+    state: restarted
+    enabled: yes
+  become: yes
+  when: cockpit_docker.changed

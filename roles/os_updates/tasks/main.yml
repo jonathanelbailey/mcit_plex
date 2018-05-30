@@ -1,0 +1,41 @@
+- name: enable epel
+  yum:
+    name: epel-release
+    state: present
+  become: yes
+
+- name: update
+  yum:
+    name: "*"
+    state: latest
+  become: yes
+  register: update
+
+- name: install dependencies
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - python-pip
+    - python-virtualenv
+  become: yes
+
+- name: reboot after updates
+  command: shutdown -r +1
+  async: 0
+  poll: 0
+  become: yes
+  register: reboot
+  when: update.changed
+
+
+- name: wait for server after updates reboot
+  wait_for:
+    host: "{{ ansible_ssh_host }}"
+    port: 22
+    search_regex: OpenSSH
+    state: started
+    timeout: 900
+    delay: 300
+  delegate_to: localhost
+  when: reboot.changed

@@ -1,0 +1,4 @@
+- hosts: cloud.magiccityit.com
+  tasks:
+    - include_role:
+        name: launch_instance
