@@ -8,7 +8,7 @@ node {
         withCredentials([string(credentialsId: 'pubkey', variable: 'pubkey')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 sh (
-                    script: echo $pubkey > ${env.WORKSPACE}/roles/launch_instance/files/jbailey.pub
+                    script: echo ${pubkey} > ${env.WORKSPACE}/roles/launch_instance/files/jbailey.pub
                 )
             }
         }
