@@ -16,7 +16,6 @@
 
 - name: create os keypair
   os_keypair:
-    cloud: "{{ansible_env.OS_PROJECT_NAME}}"
     state: present
     name: "{{os_pubkey_name}}"
     public_key_file: "{{os_pubkey}}"
