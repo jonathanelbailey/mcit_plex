@@ -13,7 +13,7 @@
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
-    envs:
+    env:
       TZ: America/Chicago
       ADVERTISE_IP: http://{{hostvars['plex.magiccityit.com']['ansible_default_ipv4']['address']}}:32400/
       ALLOWED_NETWORKS: "{{allowed_nets}}"
