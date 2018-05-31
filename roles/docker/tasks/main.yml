@@ -1,9 +1,11 @@
 - name: check if docker-ce is installed
   yum:
-    name: docker-ce
-    state: installed
+    list: installed
   become: yes
   register: docker_ce
+
+- debug:
+    var: docker_ce
 
 - name: remove existing docker packages
   yum:
@@ -22,10 +24,21 @@
     - lvm2
   become: yes
 
-- name: add latest docker repo
-  command: yum-config-manager --add-repo {{docker_repo}}
-  become: yes
-  when: docker_ce.results[0].find("already installed") == -1
+- name: add docker-ce stable repo
+  yum_repository:
+    name: Docker CE Stable - $basearch
+    file: docker-ce
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+
+- name: add docker-ce stable source repo
+  yum_repository:
+    name: Docker CE Stable - Sources
+    file: docker-ce
+    baseurl: https://download.docker.com/linux/centos/7/source/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
 
 - name: install docker ce
   yum:
