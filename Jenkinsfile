@@ -4,11 +4,11 @@ node {
         checkout([$class: 'GitSCM', branches: [[name: '**']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'WipeWorkspace'], [$class: 'LocalBranch']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '8e92e71b-b9a2-4a58-aba1-4b98b3b7666b', url: 'https://github.com/jonathanelbailey/mcit_baremetal_pipeline.git']]])
     }
     stage('Deploy Openstack Instance') {
-        // get public key and output to file
-        withCredentials([string(credentialsId: 'pubkey', variable: 'pubkey')]){
-            sh "echo $pubkey > /tmp/jbailey.pub"
-        }
-        withCredentials([usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials(
+            [
+                usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user'), 
+                file(credentialsId: 'pubkey', variable: 'pubkey')
+            ]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/launch_instance.yaml",
@@ -17,7 +17,8 @@ node {
                     hostKeyChecking: false,
                     colorized: true,
                     extraVars: [
-                        ansible_become_pass: [ value: "$sudo_pass", hidden: true ]
+                        ansible_become_pass: [ value: "$sudo_pass", hidden: true ],
+                        pubkey: [ value: "$pubkey", hidden: true ]
                     ]
                 )
             }
