@@ -34,7 +34,8 @@ node {
                     colorized: true,
                     extraVars: [
                         ansible_become_pass: [ value: "$sudo_pass", hidden: true ],
-                        pubkey: [ value: "$pubkey", hidden: true ]
+                        pubkey: [ value: "$pubkey", hidden: true ],
+                        hosts: "$env.WORKSPACE/hosts"
                     ]
                 )
             }

@@ -50,7 +50,9 @@
   when: plex.changed
 
 - name: Add CentOS Instance to Inventory
-  add_host: 
-    name: plex.magiccityit.com
-    groups: plex
-    ansible_ssh_host: "{{ plex.server.public_v4 }}"
+  lineinfile:
+    path: "{{hosts}}" 
+    regexp: plex.magiccityit.com
+    line: plex.magiccityit.com  ansible_host={{ plex.server.public_v4 }}
+    state: present
+  delegate_to: localhost
