@@ -1,0 +1,5 @@
+- hosts: plex
+  remote_user: centos
+  tasks:
+    - include_role:
+        name: radarr

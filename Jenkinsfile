@@ -80,4 +80,43 @@ node {
             }
         }
     }
+    stage('Deploy SabNZBD') {
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+            wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+                ansiblePlaybook(
+                    playbook: "$env.WORKSPACE/configure_sabnzbd.yaml",
+                    inventory: "$env.WORKSPACE/hosts",
+                    credentialsId: 'jbailey_centos',
+                    hostKeyChecking: false,
+                    colorized: true
+                )
+            }
+        }
+    }
+    stage('Deploy Sonarr') {
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+            wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+                ansiblePlaybook(
+                    playbook: "$env.WORKSPACE/configure_sonarr.yaml",
+                    inventory: "$env.WORKSPACE/hosts",
+                    credentialsId: 'jbailey_centos',
+                    hostKeyChecking: false,
+                    colorized: true
+                )
+            }
+        }
+    }
+    stage('Deploy Radarr') {
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+            wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
+                ansiblePlaybook(
+                    playbook: "$env.WORKSPACE/configure_radarr.yaml",
+                    inventory: "$env.WORKSPACE/hosts",
+                    credentialsId: 'jbailey_centos',
+                    hostKeyChecking: false,
+                    colorized: true
+                )
+            }
+        }
+    }
 }

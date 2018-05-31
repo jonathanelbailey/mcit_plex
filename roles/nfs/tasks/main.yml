@@ -13,6 +13,9 @@
     - "{{config}}"
     - "{{transcode}}"
     - "{{media}}"
+    - "{{sonarr_config}}"
+    - "{{radarr_config}}"
+    - "{{sabnzbd_config}}"
   become: yes
 
 - name: Mount media
