@@ -7,7 +7,7 @@ node {
         // get public key and output to file
         withCredentials([string(credentialsId: 'pubkey', variable: 'pubkey')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
-                sh echo $pubkey > ${env.WORKSPACE}/roles/launch_instance/files/jbailey.pub
+                sh "echo $pubkey > ${env.WORKSPACE}/roles/launch_instance/files/jbailey.pub"
             }
         }
         withCredentials([usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
