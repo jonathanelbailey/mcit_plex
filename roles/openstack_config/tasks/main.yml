@@ -3,3 +3,8 @@
     name: "{{os_packages}}"
     state: present
   become: yes
+
+- name: source keystonerc_admin
+  lineinefile:
+    src: ~/.bashrc
+    regexp: '. ~/keystonerc_admin'
