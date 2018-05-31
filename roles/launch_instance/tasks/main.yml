@@ -3,11 +3,18 @@
     image: "{{os_image}}"
   register: os_image_info
 
+- name: Show image facts
+  debug:
+    var: os_image_info
 
 - name: Gather facts about a previously created network by name
   os_networks_facts:
     name: "{{os_network}}"
   register: os_net_info
+
+- name: Show network facts
+  debug:
+    var: os_net_info
 
 - name: copy pubkey
   copy:
