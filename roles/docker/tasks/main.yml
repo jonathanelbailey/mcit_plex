@@ -24,7 +24,7 @@
 - name: add latest docker repo
   command: yum-config-manager --add-repo {{docker_repo}}
   become: yes
-  when: docker_ce | json_query('results[*].name') == 'docker-ce'
+  when: docker_ce | json_query('results[*].name') != 'docker-ce'
 
 - name: install docker ce
   yum:
