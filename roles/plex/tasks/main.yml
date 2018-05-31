@@ -22,6 +22,7 @@
       PLEX_CLAIM: "{{claim_token}}"
       ADVERTISE_IP: http://{{hostvars['plex.magiccityit.com']['ansible_default_ipv4']['address']}}:32400/
       ALLOWED_NETWORKS: "{{allowed_nets}}"
+    hostname: plex-live
     volumes:
       - "{{config}}:/config"
       - "{{transcode}}:/transcode"
