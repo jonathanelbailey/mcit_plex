@@ -1,21 +1,11 @@
 - name: Gather facts about a previously created image
   os_image_facts:
-    auth:
-      auth_url: "{{ansible_env.OS_AUTH_URL}}"
-      username: "{{ansible_env.OS_USERNAME}}"
-      password: "{{ansible_env.OS_PASSWORD}}"
-      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
     image: "{{os_image}}"
   register: os_image_info
 
 
 - name: Gather facts about a previously created network by name
   os_networks_facts:
-    auth:
-      auth_url: "{{ansible_env.OS_AUTH_URL}}"
-      username: "{{ansible_env.OS_USERNAME}}"
-      password: "{{ansible_env.OS_PASSWORD}}"
-      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
     name: "{{os_network}}"
   register: os_net_info
 
@@ -29,21 +19,11 @@
     cloud: "{{ansible_env.OS_PROJECT_NAME}}"
     state: present
     name: "{{os_pubkey_name}}"
-    auth:
-      auth_url: "{{ansible_env.OS_AUTH_URL}}"
-      username: "{{ansible_env.OS_USERNAME}}"
-      password: "{{ansible_env.OS_PASSWORD}}"
-      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
     public_key_file: "{{os_pubkey}}"
 
 - name: launch instance
   os_server:
     state: present
-    auth:
-      auth_url: "{{ansible_env.OS_AUTH_URL}}"
-      username: "{{ansible_env.OS_USERNAME}}"
-      password: "{{ansible_env.OS_PASSWORD}}"
-      project_name: "{{ansible_env.OS_PROJECT_NAME}}"
     name: plex-live
     image: "{{os_image_info.id}}"
     key_name: "{{ansible_key}}"
