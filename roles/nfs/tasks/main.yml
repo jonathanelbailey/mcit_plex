@@ -1,6 +1,6 @@
 - name: install deps
   yum:
-    name: "{{nfs_packages}}"
+    name: nfs-utils
     state: present
   become: yes
 
