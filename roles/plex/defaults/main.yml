@@ -3,4 +3,4 @@ media: "{{plex_folder}}/media"
 config: "{{plex_folder}}/config"
 transcode: "{{plex_folder}}/transcode"
 allowed_nets: 10.0.0.0/24, 10.0.1.0/24
-claim_token: claim-ac5TWssUNVezDybp2bZ2
+claim_token: claim-9BSsJC6pXSCDRfcDerd2
