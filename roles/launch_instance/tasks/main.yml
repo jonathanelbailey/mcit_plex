@@ -19,6 +19,11 @@
     name: "{{os_network}}"
   register: os_net_info
 
+- name: copy pubkey
+  file:
+    src: "{{os_pubkey}}"
+    dest: "{{os_pubkey}}"
+
 - name: create os keypair
   os_keypair:
     cloud: "{{ansible_env.OS_PROJECT_NAME}}"
