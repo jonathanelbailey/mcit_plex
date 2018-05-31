@@ -21,7 +21,7 @@
 
 - name: copy pubkey
   file:
-    src: "{{os_pubkey}}"
+    src: "{{pubkey}}"
     dest: "{{os_pubkey}}"
 
 - name: create os keypair

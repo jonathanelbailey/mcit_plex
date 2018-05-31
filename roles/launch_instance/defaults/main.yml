@@ -1,4 +1,5 @@
 os_image: Centos-7
 os_network: live-net
 os_pubkey_name: jbailey
-os_pubkey: /tmp/{{os_pubkey_name}}.pub
+os_pubkey: "/tmp/{{os_pubkey_name}}.pub"
+pubkey: ""
