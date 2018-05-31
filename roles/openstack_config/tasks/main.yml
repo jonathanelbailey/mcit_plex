@@ -1,4 +1,4 @@
 - name: install dependencies
   pip:
-    name: os-client-config
+    name: "{{os_packages}}"
     state: present
