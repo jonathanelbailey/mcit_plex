@@ -33,7 +33,7 @@
     nics:
       - net-id: "{{openstack_networks[0].id}}"
     timeout: 200
-    flavor: "{{openstack_flavors.id}}"
+    flavor: "{{openstack_flavors[0].id}}"
     meta:
       hostname: plex.magiccityit.com
       group: plex
