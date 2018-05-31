@@ -24,6 +24,7 @@
 - name: add docker-ce stable repo
   yum_repository:
     name: Docker CE Stable - $basearch
+    description: Docker CE Stable
     file: docker-ce
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     gpgcheck: yes
@@ -32,6 +33,7 @@
 - name: add docker-ce stable source repo
   yum_repository:
     name: Docker CE Stable - Sources
+    description: Docker CE Stable - Sources
     file: docker-ce
     baseurl: https://download.docker.com/linux/centos/7/source/stable
     gpgcheck: yes
