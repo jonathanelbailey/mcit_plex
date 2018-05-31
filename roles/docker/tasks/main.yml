@@ -21,25 +21,10 @@
     - lvm2
   become: yes
 
-- name: add docker-ce stable repo
-  yum_repository:
-    name: Docker CE Stable - $basearch
-    description: Docker CE Stable
-    file: docker-ce
-    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-    gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/centos/gpg
+- name: add latest docker repo
+  command: yum-config-manager --add-repo {{docker_repo}}
   become: yes
-
-- name: add docker-ce stable source repo
-  yum_repository:
-    name: Docker CE Stable - Sources
-    description: Docker CE Stable - Sources
-    file: docker-ce
-    baseurl: https://download.docker.com/linux/centos/7/source/stable
-    gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/centos/gpg
-  become: yes
+  when: docker_ce | json_query('results[*].name') == 'docker-ce'
 
 - name: install docker ce
   yum:
