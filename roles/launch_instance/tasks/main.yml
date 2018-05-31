@@ -29,10 +29,10 @@
   os_server:
     state: present
     name: plex-live
-    image: "{{os_image_info.id}}"
+    image: "{{openstack_image.id}}"
     key_name: "{{os_pubkey}}"
     nics:
-      net-id: "{{os_net_info.id}}"
+      net-id: "{{openstack_networks[0].id}}"
     timeout: 200
     flavor: 6
     meta:
