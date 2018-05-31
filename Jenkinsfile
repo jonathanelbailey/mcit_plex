@@ -6,7 +6,7 @@ node {
     stage('Deploy Openstack Instance') {
         withCredentials(
             [
-                usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user'), 
+                usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user'), 
                 file(credentialsId: 'pubkey', variable: 'pubkey')
             ]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
@@ -25,7 +25,7 @@ node {
         }
     }
     stage('Configure OS') {
-        withCredentials([usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/launch_instance.yaml",
@@ -41,7 +41,7 @@ node {
         }
     }
     stage('Deploy Docker') {
-        withCredentials([usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_docker.yaml",
@@ -57,7 +57,7 @@ node {
         }
     }
     stage('Deploy Plex') {
-        withCredentials([usernamePassword(credentialsId: 'pubkey', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_plex.yaml",
