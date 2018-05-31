@@ -42,49 +42,40 @@ node {
         }
     }
     stage('Configure OS') {
-        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_os.yaml",
                     inventory: "$env.WORKSPACE/hosts",
-                    credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c',
+                    credentialsId: 'jbailey_centos',
                     hostKeyChecking: false,
-                    colorized: true,
-                    extraVars: [
-                        ansible_become_pass: [ value: "$sudo_pass", hidden: true ]
-                    ]
+                    colorized: true
                 )
             }
         }
     }
     stage('Deploy Docker') {
-        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_docker.yaml",
                     inventory: "$env.WORKSPACE/hosts",
-                    credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c',
+                    credentialsId: 'jbailey_centos',
                     hostKeyChecking: false,
-                    colorized: true,
-                    extraVars: [
-                        ansible_become_pass: [ value: "$sudo_pass", hidden: true ]
-                    ]
+                    colorized: true
                 )
             }
         }
     }
     stage('Deploy Plex') {
-        withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
+        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_plex.yaml",
                     inventory: "$env.WORKSPACE/hosts",
-                    credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c',
+                    credentialsId: 'jbailey_centos',
                     hostKeyChecking: false,
-                    colorized: true,
-                    extraVars: [
-                        ansible_become_pass: [ value: "$sudo_pass", hidden: true ]
-                    ]
+                    colorized: true
                 )
             }
         }
