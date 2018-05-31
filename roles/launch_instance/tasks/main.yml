@@ -14,6 +14,10 @@
   shell: . ~/keystonerc_admin; printenv | grep OS_PROJECT_NAME | awk -F'=' '{print $2}'
   register: os_project_name
 
+- name: get project domain
+  shell: . ~/keystonerc_admin; printenv | grep OS_PROJECT_DOMAIN_NAME | awk -F'=' '{print $2}'
+  register: os_project_domain
+
 - name: Gather facts about a previously created image
   os_image_facts:
     auth:
@@ -21,6 +25,7 @@
       username: "{{os_username.stdout}}"
       password: "{{os_password.stdout}}"
       project_name: "{{os_project_name.stdout}}"
+      project_domain_name: "{{os_project_domain}}"
     image: "{{os_image}}"
   register: os_image_info
 
