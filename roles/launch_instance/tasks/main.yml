@@ -25,7 +25,7 @@
     state: present
     name: plex-live
     image: "{{os_image_info.id}}"
-    key_name: "{{ansible_key}}"
+    key_name: "{{os_pubkey}}"
     nics:
       net-id: "{{os_net_info.id}}"
     timeout: 200
