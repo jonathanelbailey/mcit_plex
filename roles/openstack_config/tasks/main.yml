@@ -1,0 +1,4 @@
+- name: install dependencies
+  pip:
+    name: os-client-config
+    state: present

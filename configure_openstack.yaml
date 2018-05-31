@@ -1,0 +1,4 @@
+- hosts: openstack
+  tasks:
+    - inclode_role:
+        name: openstack_config
