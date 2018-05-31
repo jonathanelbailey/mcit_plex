@@ -32,7 +32,7 @@
     image: "{{openstack_image.id}}"
     key_name: "{{os_pubkey}}"
     nics:
-      net-id: "{{openstack_networks[0].id}}"
+      - net-id: "{{openstack_networks[0].id}}"
     timeout: 200
     flavor: 6
     meta:
