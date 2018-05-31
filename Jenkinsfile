@@ -44,7 +44,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c', passwordVariable: 'sudo_pass', usernameVariable: 'sudo_user')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
-                    playbook: "$env.WORKSPACE/launch_instance.yaml",
+                    playbook: "$env.WORKSPACE/configure_os.yaml",
                     inventory: "$env.WORKSPACE/hosts",
                     credentialsId: 'ca75d291-93c4-47f8-aa5a-3a3b0b703d9c',
                     hostKeyChecking: false,
