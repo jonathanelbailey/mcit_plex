@@ -15,6 +15,11 @@
       - 32414:32414/udp
     env:
       TZ: America/Chicago
+      PLEX_UID: 1001
+      PLEX_GID: 1001
+      CHANGE_CONFIG_DIR_OWNERSHIP: true
+      HOSTNAME: plex-live
+      PLEX_CLAIM: "{{claim_token}}"
       ADVERTISE_IP: http://{{hostvars['plex.magiccityit.com']['ansible_default_ipv4']['address']}}:32400/
       ALLOWED_NETWORKS: "{{allowed_nets}}"
     volumes:
