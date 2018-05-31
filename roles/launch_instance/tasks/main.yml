@@ -23,7 +23,7 @@
   os_keypair:
     cloud: "{{ansible_env.OS_PROJECT_NAME}}"
     state: present
-    name: "{{ansible_key}}"
+    name: "{{os_pubkey_name}}"
     auth:
       auth_url: "{{ansible_env.OS_AUTH_URL}}"
       username: "{{ansible_env.OS_USERNAME}}"

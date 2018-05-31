@@ -1,3 +1,4 @@
 os_image: Centos-7
 os_network: live-net
-ansible_key: /tmp/jbailey.pub
+os_pubkey_name: jbailey
+os_pubkey: /tmp/{{os_pubkey_name}}.pub
