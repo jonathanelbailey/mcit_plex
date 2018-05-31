@@ -53,6 +53,6 @@
   lineinfile:
     path: "{{hosts}}" 
     regexp: plex.magiccityit.com
-    line: plex.magiccityit.com  ansible_host={{ plex.server.public_v4 }}
+    line: plex.magiccityit.com  ansible_host={{ plex.server.public_v4 }}  ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
     state: present
   delegate_to: localhost
