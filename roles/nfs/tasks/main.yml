@@ -21,3 +21,4 @@
     src: "{{nfs_media}}"
     fstype: nfs
     state: mounted
+  become: yes
