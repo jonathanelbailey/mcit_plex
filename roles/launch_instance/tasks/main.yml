@@ -1,3 +1,6 @@
+- name: source keystonerc
+  shell: . keystonerc_admin
+  
 - name: Gather facts about a previously created image
   os_image_facts:
     auth:
