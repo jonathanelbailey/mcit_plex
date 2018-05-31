@@ -4,9 +4,6 @@
   become: yes
   register: docker_ce
 
-- debug:
-    var: docker_ce
-
 - name: remove existing docker packages
   yum:
     name: "{{docker_packages}}"
