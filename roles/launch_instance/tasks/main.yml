@@ -10,9 +10,6 @@
   os_flavor_facts:
     name: "{{os_flavor}}"
 
-- debug:
-    var: openstack_flavors
-
 - name: copy pubkey
   copy:
     src: "{{pubkey}}"
