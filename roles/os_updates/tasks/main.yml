@@ -36,6 +36,6 @@
     search_regex: OpenSSH
     state: started
     timeout: 900
-    delay: 300
+    delay: 60
   delegate_to: localhost
   when: reboot.changed
