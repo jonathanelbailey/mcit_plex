@@ -9,7 +9,7 @@
     name: "{{docker_packages}}"
     state: absent
   become: yes
-  when: docker_ce.results[?name == 'docker-ce'] == -1
+  when: docker_ce.results[?name=='docker-ce'] == -1
 
 - name: install required docker packages
   yum:
