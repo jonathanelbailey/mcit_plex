@@ -21,3 +21,4 @@
       - "{{config}}:/config"
       - "{{transcode}}:/transcode"
       - "{{media}}:/data"
+  become: yes
