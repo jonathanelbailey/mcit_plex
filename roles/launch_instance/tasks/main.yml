@@ -26,7 +26,7 @@
     state: present
     name: plex-live
     image: "{{openstack_image.id}}"
-    key_name: "{{os_pubkey}}"
+    key_name: "{{os_pubkey_name}}"
     nics:
       - net-id: "{{openstack_networks[0].id}}"
     timeout: 200
