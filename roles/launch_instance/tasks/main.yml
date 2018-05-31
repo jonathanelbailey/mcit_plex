@@ -20,7 +20,7 @@
   register: os_net_info
 
 - name: copy pubkey
-  file:
+  copy:
     src: "{{pubkey}}"
     dest: "{{os_pubkey}}"
 
