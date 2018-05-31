@@ -6,5 +6,5 @@
 
 - name: source keystonerc_admin
   lineinfile:
-    src: "{{ansible_env.HOME}}/.bashrc"
+    path: "{{ansible_env.HOME}}/.bashrc"
     regexp: source {{ansible_env.HOME}}/keystonerc_admin
