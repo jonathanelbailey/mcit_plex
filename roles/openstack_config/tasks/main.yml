@@ -2,3 +2,4 @@
   pip:
     name: "{{os_packages}}"
     state: present
+  become: yes
