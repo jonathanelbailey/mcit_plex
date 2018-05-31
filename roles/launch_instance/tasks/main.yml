@@ -40,7 +40,7 @@
       group: plex
     wait: yes
     auto_floating_ip: yes
-    register: plex
+  register: plex
 
 - name: wait for server to deploy
   wait_for:
