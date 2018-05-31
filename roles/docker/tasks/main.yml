@@ -29,6 +29,7 @@
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
+  become: yes
 
 - name: add docker-ce stable source repo
   yum_repository:
@@ -38,6 +39,7 @@
     baseurl: https://download.docker.com/linux/centos/7/source/stable
     gpgcheck: yes
     gpgkey: https://download.docker.com/linux/centos/gpg
+  become: yes
 
 - name: install docker ce
   yum:
