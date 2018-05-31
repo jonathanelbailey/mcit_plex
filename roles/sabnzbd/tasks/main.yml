@@ -1,0 +1,17 @@
+- name: create sabnzbd container
+  docker_container:
+    name: mcit_sabnzbd
+    image: linuxserver/sabnzbd:latest
+    state: started
+    network_mode: host
+    env:
+      TZ: America/Chicago
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+    hostname: sabnzbd-live
+    volumes:
+      - "{{config}}:/config"
+      - "{{downloads}}:/downloads"
+      - "{{incomplete_downloads}}:/incomplete-downloads"
+      - /etc/localtime:/etc/localtime:ro
+  become: yes

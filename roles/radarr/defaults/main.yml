@@ -1,0 +1,4 @@
+radarr_folder: /radarr
+movies: "{{radarr_folder}}/movies"
+config: "{{radarr_folder}}/config"
+downloads: "{{radarr_folder}}/downloads"

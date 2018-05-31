@@ -1,0 +1,17 @@
+- name: create radarr container
+  docker_container:
+    name: mcit_radarr
+    image: linuxserver/radarr:latest
+    state: started
+    network_mode: host
+    env:
+      TZ: America/Chicago
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+    hostname: radarr-live
+    volumes:
+      - "{{config}}:/config"
+      - "{{movies}}:/movies"
+      - "{{downloads}}:/downloads"
+      - /etc/localtime:/etc/localtime:ro
+  become: yes

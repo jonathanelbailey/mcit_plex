@@ -1,0 +1,17 @@
+- name: create sonarr container
+  docker_container:
+    name: mcit_sonarr
+    image: linuxserver/sonarr:latest
+    state: started
+    network_mode: host
+    env:
+      TZ: America/Chicago
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+    hostname: sonarr-live
+    volumes:
+      - "{{config}}:/config"
+      - "{{tv}}:/tv"
+      - "{{downloads}}:/downloads"
+      - /etc/localtime:/etc/localtime:ro
+  become: yes

@@ -1,0 +1,4 @@
+sonarr_folder: /sonarr
+tv: "{{sonarr_folder}}/tv"
+config: "{{sonarr_folder}}/config"
+downloads: "{{sonarr_folder}}/downloads"

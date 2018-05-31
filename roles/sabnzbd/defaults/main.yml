@@ -1,0 +1,4 @@
+sabmzbd_folder: /sabnzbd
+incomplete_downloads: "{{sabmzbd_folder}}/incomplete-downloads"
+config: "{{sabmzbd_folder}}/config"
+downloads: "{{sabmzbd_folder}}/downloads"
