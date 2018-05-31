@@ -17,7 +17,7 @@
       TZ: America/Chicago
       ADVERTISE_IP: http://{{hostvars['plex.magiccityit.com']['ansible_default_ipv4']['address']}}:32400/
       ALLOWED_NETWORKS: "{{allowed_nets}}"
-    volumes_from:
+    volumes:
       - "{{config}}:/config"
       - "{{transcode}}:/transcode"
       - "{{media}}:/data"
