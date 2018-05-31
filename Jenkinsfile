@@ -42,7 +42,7 @@ node {
         }
     }
     stage('Configure OS') {
-        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_os.yaml",
@@ -55,7 +55,7 @@ node {
         }
     }
     stage('Deploy Docker') {
-        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_docker.yaml",
@@ -68,7 +68,7 @@ node {
         }
     }
     stage('Deploy Plex') {
-        withCredentials([usernamePassword(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
+        withCredentials([sshUserPrivateKey(credentialsId: 'jbailey_centos', keyFileVariable: 'key_file')]){
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                 ansiblePlaybook(
                     playbook: "$env.WORKSPACE/configure_plex.yaml",
