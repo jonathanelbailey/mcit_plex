@@ -1,4 +1,4 @@
-- hosts: cloud.magiccityit.com
+- hosts: openstack
   tasks:
     - include_role:
         name: launch_instance
