@@ -1,5 +1,6 @@
 os_image: CentOS-7
 os_network: live-net
+os_flavor: m1.xlarge
 os_pubkey_name: jbailey
 os_pubkey: "/tmp/{{os_pubkey_name}}.pub"
 pubkey: ""

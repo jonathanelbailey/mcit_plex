@@ -2,17 +2,16 @@
   os_image_facts:
     image: "{{os_image}}"
 
-- name: Show image facts
-  debug:
-    var: openstack_image
-
 - name: Gather facts about a previously created network by name
   os_networks_facts:
     name: "{{os_network}}"
 
-- name: Show network facts
-  debug:
-    var: openstack_networks
+- name: Gather facts about a flavor
+  os_flavor_facts:
+    name: "{{os_flavor}}"
+
+- debug:
+    var: openstack_flavors
 
 - name: copy pubkey
   copy:
@@ -34,7 +33,7 @@
     nics:
       - net-id: "{{openstack_networks[0].id}}"
     timeout: 200
-    flavor: 6
+    flavor: "{{openstack_flavors.id}}"
     meta:
       hostname: plex.magiccityit.com
       group: plex
