@@ -1,4 +1,4 @@
 plex_folder: /plex
 tv: "{{plex_folder}}/tvshows"
-config: "{{plex_folder}}/config"
+config: "{{plex_folder}}/sonarr/config"
 downloads: "{{plex_folder}}/downloads"

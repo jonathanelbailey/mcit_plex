@@ -1,4 +1,4 @@
 plex_folder: /plex
 movies: "{{plex_folder}}/movies"
-config: "{{plex_folder}}/config"
+config: "{{plex_folder}}/radarr/config"
 downloads: "{{plex_folder}}/downloads"

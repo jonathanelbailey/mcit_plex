@@ -1,4 +1,4 @@
 plex_folder: /plex
 incomplete_downloads: "{{plex_folder}}/downloads/incomplete-downloads"
-config: "{{plex_folder}}/config"
+config: "{{plex_folder}}/sabnzbd/config"
 downloads: "{{plex_folder}}/downloads/complete"
